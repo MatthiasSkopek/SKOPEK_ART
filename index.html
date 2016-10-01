@@ -1,0 +1,76 @@
+
+<body>
+    <div id="mobile_nav">
+      <div class="search_container">
+        <form action="index.php?id=88&amp;tx_indexedsearch_pi2%5Baction%5D=search&amp;tx_indexedsearch_pi2%5Bcontroller%5D=Search" method="post" name="tx_indexedsearch">
+        <input id="search" type="test" name="tx_indexedsearch_pi2[search][sword]"  placeholder="{labelSearchPlaceholder}"/>
+        <button type="submit" class="icon" name="tx_indexedsearch_pi2[search][submitButton]"><i class="fa fa-search"></i></button>
+        </form>
+
+      </div>
+      {menuPrimary -> f:format.raw()}
+      <ul class="social">
+        <li>
+            <a href="https://www.facebook.com/Matthias-S-Photography-1435230113356609/"><i class="fa fa-facebook " aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a  href="https://www.instagram.com/matthias_skopek/"><i class="fa fa-instagram " aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a href="https://500px.com/matthiasskopek" ><i class="fa fa-500px " aria-hidden="true"></i></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/matthias-skopek-a0747212a?trk=hp-identity-name"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </div>
+  <div id="container">
+  <nav>
+    <div class="social_nav">
+
+      <div class="search_container">
+          <form action="index.php?id=88&amp;tx_indexedsearch_pi2%5Baction%5D=search&amp;tx_indexedsearch_pi2%5Bcontroller%5D=Search" method="post" name="tx_indexedsearch">
+          <input id="search" type="test" name="tx_indexedsearch_pi2[search][sword]"  placeholder="{labelSearchPlaceholder}"/>
+          <ul>
+            <li>
+              <button type="submit" class="icon" name="tx_indexedsearch_pi2[search][submitButton]"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/Matthias-S-Photography-1435230113356609/" class="icon" onclick=""><i class="fa fa-facebook " aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a  href="https://www.instagram.com/matthias_skopek/" class="icon"><i class="fa fa-instagram " aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href="https://500px.com/matthiasskopek" class="icon"><i class="fa fa-500px " aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/matthias-skopek-a0747212a?trk=hp-identity-name" class="icon"><i class="fa fa-linkedin" aria-hidden="true"></i></i></a>
+            </li>
+          </ul>
+
+        </form>
+        </div>
+    </div>
+    <h1 id="brand">{HEADERTITLE -> f:format.raw()}</h1>
+    <button class="toggleMenu" onclick="menu()">
+      <div class="line_one one" >
+      </div>
+      <div class="line_one two">
+      </div>
+      <div class="line_one three">
+      </div>
+    </button>
+    <div id="main_nav">
+      {menuPrimary -> f:format.raw()}
+    </div>
+  </nav>
+<div id="content">
+  {mainContent -> f:format.raw()}
+</div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/js.js"></script>
+</body>
+</html>

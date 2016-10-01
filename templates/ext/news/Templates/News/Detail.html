@@ -1,0 +1,98 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+
+<f:layout name="Detail.html" />
+
+<!--
+	=====================
+		News/Detail.html
+-->
+
+<f:section name="content">
+	<f:if condition="{newsItem}">
+		<f:then>
+			<n:format.nothing>
+				<f:if condition="{newsItem.alternativeTitle}">
+					<f:then>
+						<n:titleTag>
+							<n:format.htmlentitiesDecode>{newsItem.alternativeTitle}</n:format.htmlentitiesDecode>
+						</n:titleTag>
+					</f:then>
+					<f:else>
+						<n:titleTag>
+							<n:format.htmlentitiesDecode>{newsItem.title}</n:format.htmlentitiesDecode>
+						</n:titleTag>
+					</f:else>
+				</f:if>
+				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+			</n:format.nothing>
+
+			<div class="news_detail_headline">
+				<h3 itemprop="headline">{newsItem.title}</h3>
+			</div>
+			<!-- main text -->
+			<div class="news_detail_text" itemprop="articleBody">
+				<f:format.html>{newsItem.bodytext}</f:format.html>
+			</div>
+
+			<f:if condition="{newsItem.contentElements}">
+				<!-- content elements -->
+				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+			</f:if>
+
+			<f:render partial="Detail/FalMediaContainer" arguments="{media: newsItem.falMedia, settings:settings}" />
+			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
+
+
+
+
+			<f:if condition="{settings.detail.showSocialShareButtons}">
+				<f:comment>
+					<![CDATA[
+					Care about the privacy of your readers?
+					Checkout https://typo3.org/extensions/repository/view/rx_shariff
+					and integrate it here with:
+					<div xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper">
+						<rx:shariff services="facebook,xing,twitter,twitter" enableBackend="true" />
+					</div>
+					]]>
+				</f:comment>
+				<div class="facebook">
+					<div class="like">
+						<n:social.facebook.like />
+					</div>
+					<div class="share">
+						<n:social.facebook.share />
+					</div>
+					<div class="twitter">
+						<n:social.twitter>Twitter</n:social.twitter>
+					</div>
+				</div>
+			</f:if>
+
+			<f:if condition="{settings.detail.disqusShortname}">
+				<div id="disqus_thread"></div>
+				<n:social.disqus newsItem="{newsItem}"
+								 shortName="{settings.detail.disqusShortname}"
+								 link="{n:link(newsItem:newsItem, settings:settings, uriOnly:1, configuration:'{forceAbsoluteUrl:1}')}" />
+			</f:if>
+
+			<div class="news_detail_banner">
+				<p>
+					<!-- date -->
+					<span class="news-detail-date">
+						<time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+							<f:format.date format="%B %Y">{newsItem.datetime}</f:format.date>
+							<meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
+						</time>
+					</span>
+
+					<f:if condition="{newsItem.categories}">
+						<f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}" />
+					</f:if>
+				</p>
+			</div>
+
+		</f:then>
+
+	</f:if>
+</f:section>
